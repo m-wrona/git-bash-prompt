@@ -25,7 +25,7 @@ function to_ps1_var {
   if [ -n "$2" ]; then
 	COLOR=$2
   fi
-  echo "\[$COLOR\]\$($function_name)$Color_Off"
+  echo "\[$COLOR\]\$($function_name)\[$Color_Off\]"
 }
 
 ########################## MAIN SECTION ###############################################################
