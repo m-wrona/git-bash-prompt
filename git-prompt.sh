@@ -1,7 +1,7 @@
 #!/bin/sh
 
 source colors.sh
-source functions.sh
+source git-utils.sh
 
 #Print status about current GIT repository
 #args: none
@@ -14,7 +14,7 @@ function print_git_prompt {
   	return
   fi
   local ADDED=`count_changes A`
-  local MODIFIED=`count_changes M`
+  local MODIFIED=`count_changes "M\|R"`
   local DELETED=`count_changes D`
   local UNTRACKED=`count_changes ?`
   local STASHED=`count_stashed`
