@@ -1,32 +1,7 @@
 #!/bin/sh
 
 source colors.sh
-
-
-########################## FUNCTIONS SECTION ###############################################################
-
-#Get name of current branch from GIT repository placed in current directory. 
-#args: none
-#return: name of the branch or empty string if current directory is not a GIT repository
-function get_current_branch {
-  #get current branch and remove not needed chars
-  local BRANCH=$(git branch --list 2>/dev/null | grep '*' | sed 's/* //')
-  echo ${BRANCH}
-}
-
-#Convert function invocation into PS1 variable with proper color 
-#args:
-#$1: function name
-#$2: color of variable (optional, if not given default will be taken) 
-#return: string representation of PS1 variable
-function to_ps1_var {
-  local function_name=$1
-  local COLOR=$Black
-  if [ -n "$2" ]; then
-	COLOR=$2
-  fi
-  echo "\[$COLOR\]\$($function_name)\[$Color_Off\]"
-}
+source functions.sh
 
 ########################## MAIN SECTION ###############################################################
 
@@ -37,8 +12,13 @@ fi
 
 #prepare GIT prompts
 BRANCH=`to_ps1_var 'get_current_branch' $Green`
+ADDED=`to_ps1_var 'count_changes ✚ A' $Yellow`
+MODIFIED=`to_ps1_var 'count_changes ● M' $Blue`
+DELETED=`to_ps1_var 'count_changes ✖ D' $Red`
+UNTRACKED=`to_ps1_var 'count_changes ? ?' $BRed`
+STASHED=`to_ps1_var 'count_stashed ⚑' $Cyan`
 
 #set GIT prompts in PS1
-export PS1="$SOURCE_PS1($BRANCH)$"
+export PS1="$SOURCE_PS1($BRANCH,$ADDED:$MODIFIED:$DELETED:$UNTRACKED,$STASHED)$"
 
 
