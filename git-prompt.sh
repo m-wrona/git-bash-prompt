@@ -1,6 +1,6 @@
 #!/bin/sh
 
-source colors.sh
+source colours.sh
 source git-utils.sh
 
 #Print status about current GIT repository
