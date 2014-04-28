@@ -12,7 +12,7 @@ export PS1="$SOURCE_PS1\$(print_git_prompt)$"
 
 #Print status about current GIT repository
 #args: none
-#return: pretty string with status for GIT repository, empty string otherwise
+#return: pretty string with status for GIT repository
 function print_git_prompt {
   local GIT_BRANCH=`get_current_branch`
   if [ -z "$GIT_BRANCH" ]; then
@@ -43,7 +43,7 @@ function print_git_prompt {
   fi
 }
 
-#Append key and value to GIT_REPO_STATUS if value is not empty 
+#Append key and value to GIT_REPO_STATUS variable if value is not empty 
 #args:
 #$1: key
 #$2: value
@@ -54,8 +54,7 @@ function append {
   if [ -z "$VALUE" ] || [ $VALUE = "0" ]; then
 	#omit empty values
  	return
-  fi
-  if [ -n "$GIT_REPO_STATUS" ]; then
+  elif [ -n "$GIT_REPO_STATUS" ]; then
 	GIT_REPO_STATUS="$GIT_REPO_STATUS,"
   fi
   GIT_REPO_STATUS="$GIT_REPO_STATUS$KEY $VALUE"
