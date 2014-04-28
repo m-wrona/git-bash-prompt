@@ -32,4 +32,4 @@ Installation
 
 1) git clone {repository} <br>
 2) cd {repository} <br>
-3) $install.sh <br>
+3) $source install.sh <br>
