@@ -39,13 +39,14 @@ function print_git_prompt {
 
 #Append key and value to GIT_REPO_STATUS if value is not empty 
 #args:
-#$1: value
+#$1: key
 #$2: value
 #return: none
 function append {
   local KEY=$1
   local VALUE=$2
   if [ -z "$VALUE" ] || [ $VALUE = "0" ]; then
+	#omit empty values
  	return
   fi
   if [ -n "$GIT_REPO_STATUS" ]; then
