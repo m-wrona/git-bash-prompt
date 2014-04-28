@@ -12,7 +12,7 @@ export PS1="$SOURCE_PS1\$(print_git_prompt)$"
 
 #Print status about current GIT repository
 #args: none
-#return: pretty string with status for GIT repository
+#return: pretty string with status of GIT repository
 function print_git_prompt {
   local GIT_BRANCH=`get_current_branch`
   if [ -z "$GIT_BRANCH" ]; then
