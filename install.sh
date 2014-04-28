@@ -1,11 +1,19 @@
 #!/bin/sh
 
-source git-prompt.sh
 
-if [ -z "$SOURCE_PS1" ]; then
-	#get source PS1, if not imported yet, without last '$' mark
-	SOURCE_PS1=`echo $PS1 | sed 's/^\(.*\)\\\\$$/\1/'`
-fi
+SOURCE_DIR=`pwd`
+GIT_PROMPT_DIR=".git-prompt"
 
-#set GIT prompts in PS1
-export PS1="$SOURCE_PS1\$(print_git_prompt)$"
+#copy scipts to GIT prompt directory
+cd ~/
+echo "Installing GIT prompt in ~/$GIT_PROMPT_DIR"
+rm -rf $GIT_PROMPT_DIR 2>/dev/null 
+mkdir $GIT_PROMPT_DIR
+cp $SOURCE_DIR/git-prompt.sh $GIT_PROMPT_DIR
+cp $SOURCE_DIR/git-utils.sh $GIT_PROMPT_DIR
+
+#attach scripts to .bashrc
+echo "Attaching sources of GIT prompt to ~/.bashrc"
+echo "source ~/$GIT_PROMPT_DIR/git-utils.sh" >> ~/.bashrc
+echo "source ~/$GIT_PROMPT_DIR/git-prompt.sh" >> ~/.bashrc
+
