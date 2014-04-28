@@ -18,13 +18,13 @@ function print_git_prompt {
   local DELETED=`count_changes D`
   local UNTRACKED=`count_changes ?`
   local STASHED=`count_stashed`
-  local IS_CHANGED=`echo "$ADDED$MODIFIED$DELETED$UNTRACKED$STASHED" | grep -E ".*[1..9]+.*"`
+  local IS_CHANGED=`echo "$ADDED$MODIFIED$DELETED$UNTRACKED$STASHED" | grep -E ".*[1-9]+.*"`
   if [ -z "$IS_CHANGED" ]; then
 	#no changes found in repository
 	echo "($GIT_BRANCH✔)" 
   else
 	#print current branch and found changes
-  	echo "($GIT_BRANCH,✚$ADDED:●$MODIFIED:✖$DELETED:?$UNTRACKED,⚑$STASHED)"
+  	echo "($GIT_BRANCH,✚ $ADDED:● $MODIFIED:✖ $DELETED:?$UNTRACKED,⚑ $STASHED)"
   fi
 }
 
