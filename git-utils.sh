@@ -16,7 +16,7 @@ function count_stashed {
 #return: number of commits ahead/behind, or empty string for no pending commits
 function compare_to_origin {	
   local AHEAD_OR_BEHIND=$1
-  local COUNT=`git status -sb |  head -1 | grep -oE "$AHEAD_OR_BEHIND [0-9]+" | sed 's/'$AHEAD_OR_BEHIND' //'`
+  local COUNT=`git status -sb 2>/dev/null |  head -1 | grep -oE "$AHEAD_OR_BEHIND [0-9]+" | sed 's/'$AHEAD_OR_BEHIND' //'`
   echo $COUNT
 }
 
