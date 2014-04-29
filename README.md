@@ -7,7 +7,7 @@ Script extends PS1 variable preserving user's settings.
 Description
 ===============
 
-Script distinguish two states:
+Script distinguishes two states:
 
   * clean repository (no changes found): ({branch} ✔)
   * repository where changes are found:  ({branch},↑ {nr},↓ {nr},✚ {nr},● {nr},✖ {nr},? {nr},⚑ {nr})
@@ -25,6 +25,14 @@ where:
   * {nr}: number of changes
 
 Script displays only information about found changes thus empy statuses are skipped ({nr}=0). 
+
+
+Samples
+===============
+
+ * michal@wrona:~/git-bash-prompt(master ✔)$
+ * michal@wrona:~/git-bash-prompt(feature-branch,↓ 1, ✚ 3, ● 8, ✖ 2)$
+ * michal@wrona:~/git-bash-prompt(other-branch, ⚑ 1)$
 
 
 Installation
