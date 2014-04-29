@@ -35,7 +35,7 @@ function count_changes {
 #return: name of the branch or empty string if current directory is not a GIT repository
 function get_current_branch {
   #get current branch and remove not needed chars
-  local BRANCH=`git branch --list 2>/dev/null | grep '*' | sed 's/* //'`
+  local BRANCH=`git status -b 2>/dev/null | head -1 | cut -d ' ' -f 4`
   echo $BRANCH
 }
 
