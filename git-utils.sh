@@ -26,7 +26,7 @@ function compare_to_origin {
 #return: pretty string with counted changes
 function count_changes {	
   local CHANGE_TYPE=$1
-  local COUNT=`git status --porcelain 2>/dev/null | grep $CHANGE_TYPE | wc -l`
+  local COUNT=`git status --porcelain 2>/dev/null | sed 's/ //' | cut -c 1 | grep $CHANGE_TYPE | wc -l`
   echo $COUNT
 }
 
